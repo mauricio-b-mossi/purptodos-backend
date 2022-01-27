@@ -4,15 +4,14 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { GroupModule } from './group/group.module';
-import { TicketModule } from './ticket/ticket.module';
-import { EventService } from './event/event.service';
-import { EventModule } from './event/event.module';
+import { TodoModule } from './todo/todo.module';
+import { TodoController } from './todo/todo.controller';
 import config from 'dbConfig';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, AuthModule, GroupModule, TicketModule, EventModule, TypeOrmModule.forRoot(config)],
-  controllers: [AppController],
+  imports: [UserModule, AuthModule, TypeOrmModule.forRoot(config), TodoModule, ConfigModule.forRoot()],
+  controllers: [AppController, TodoController],
   providers: [AppService],
 })
 export class AppModule {}

@@ -1,15 +1,21 @@
 import { Exclude } from 'class-transformer';
-import { Group } from 'src/group/group.entity';
-import { Ticket } from 'src/ticket/ticket.entity';
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Todo } from 'src/todo/todo.entity';
+import { BeforeInsert, Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import * as bcrypt from 'bcrypt'
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+
   @Column({
-    unique: true,
+    unique : true
+  })
+  email : string
+
+  @Column({
+    unique: true
   })
   username: string;
 
@@ -17,12 +23,19 @@ export class User {
   @Column()
   password: string;
 
-  @OneToMany(() => Group, (group) => group.creator)
-  creator: Group[];
+  @Exclude()
+  @Column({default: false})
+  isActive : boolean
 
-  @ManyToMany(() => Group)
-  groups: Group[];
+  @OneToMany(type => Todo, todo => todo.user)
+  todos: Todo[];
 
-  @OneToMany(() => Ticket, (ticket) => ticket.owner)
-  ownedtickets: Ticket[];
+
+  @BeforeInsert()
+  async setPassword(password: string) {
+    const salt = await bcrypt.genSalt()
+
+    this.password = await bcrypt.hash(password || this.password, salt)
+  }
+
 }

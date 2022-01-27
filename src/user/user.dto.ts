@@ -4,14 +4,16 @@ export class ReturnUserDto{
 }
 
 export class CreateUserDto{
+    email: string;
     username: string;
-    passowrd: string
+    password: string;
 }
+
 
 export class AuthUserDto{
     id: number;
     username: string;
-    passowrd: string
+    password: string
 }
 
 export class LoginReturnUser {

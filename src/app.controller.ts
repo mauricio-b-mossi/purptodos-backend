@@ -23,16 +23,11 @@ export class AppController {
     private readonly userService: UserService,
   ) {}
 
-  // @UseGuards(JwtGuard)
-  // @Get()
-  // async getRequestUser(@Request() req): Promise<any> {
-  //   return req.user;
-  // }
-
   @Get()
   sayHi(): string{
     return 'Hi'
   } 
+
 
 
 }

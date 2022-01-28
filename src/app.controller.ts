@@ -25,7 +25,7 @@ export class AppController {
 
   @Get()
   sayHi(): string{
-    return 'Hi'
+    return 'Purp Todo API'
   } 
 
 

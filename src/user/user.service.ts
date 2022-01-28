@@ -30,15 +30,23 @@ export class UserService {
     password,
     email,
   }: CreateUserDto): Promise<ReturnUserDto> {
-    const newUser = await this.userRepository.create({
-      username,
-      password,
-      email,
-    });
 
-    await this.sendUserConfirmation(newUser);
+    try {
+         const newUser = await this.userRepository.create({
+           username,
+           password,
+           email,
+         });
 
-    return this.userRepository.save(newUser);
+         await this.userRepository.save(newUser);
+
+      await this.sendUserConfirmation(newUser);
+      
+      return newUser
+    } catch (error) {
+      throw error
+    }
+ 
   }
 
   async getOneUser(id: number): Promise<ReturnUserDto> {

@@ -4,7 +4,7 @@ import { BeforeInsert, Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedCo
 import * as bcrypt from 'bcrypt'
 
 @Entity()
-export class User {
+export class Person {
   @PrimaryGeneratedColumn()
   id: number;
 

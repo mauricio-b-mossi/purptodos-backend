@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto, ReturnUserDto } from './user.dto';
-import { User } from './user.entity';
+import { Person } from './user.entity';
 import * as bcrypt from 'bcrypt';
 // import { confirmationSecret } from 'jwtConstants';
 import { MailerService } from '@nestjs-modules/mailer';
@@ -13,7 +13,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(Person) private userRepository: Repository<Person>,
     private mailerService: MailerService,
     private configService: ConfigService,
   ) { }
@@ -54,8 +54,8 @@ export class UserService {
     return user;
   }
 
-  async findOneUserByUserName(username: string): Promise<User> {
-    const user: User = await this.userRepository.findOne({ username });
+  async findOneUserByUserName(username: string): Promise<Person> {
+    const user: Person = await this.userRepository.findOne({ username });
     return user;
   }
 

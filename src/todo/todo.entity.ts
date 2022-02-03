@@ -1,4 +1,4 @@
-import { User } from "src/user/user.entity";
+import { Person } from "src/user/user.entity";
 import { Entity, Column, ManyToMany, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
 @Entity()
@@ -13,6 +13,6 @@ export class Todo {
     @Column()
     body: string;
 
-    @ManyToOne(type => User, user => user.todos)
-    user: User;
+    @ManyToOne(type => Person, user => user.todos)
+    user: Person;
 }

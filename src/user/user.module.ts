@@ -1,6 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {User} from './user.entity';
+import {Person} from './user.entity';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -10,7 +10,7 @@ import { async } from 'rxjs';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([Person]),
     MailerModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

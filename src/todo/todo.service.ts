@@ -14,8 +14,10 @@ export class TodoService {
 
   async getUserTodos(userId: number): Promise<ReturnTodoInterface[]> {
     const todos = await this.todoRepository.manager.query(
-      `SELECT * FROM todo WHERE userId = ${userId}`,
+      `SELECT * FROM PUBLIC."todo" WHERE "userId" = ${userId}`,
     );
+
+    // const todos = await this.todoRepository.find({where : {user : userId}})
     return todos;
   }
 
@@ -71,7 +73,7 @@ export class TodoService {
   // Helper
   async verifyOwner(userId: number, todoId: number): Promise<Todo> {
     const todo = await this.todoRepository.manager.query(
-      `SELECT * FROM todo WHERE id = ${todoId} AND userId = ${userId} LIMIT 1`,
+      `SELECT * FROM PUBLIC."todo" WHERE "id" = ${todoId} AND "userId" = ${userId} LIMIT 1`,
     );
     if (todo.length < 1) throw new UnauthorizedException();
     return todo[0];

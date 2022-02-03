@@ -1,16 +1,17 @@
-import { SqliteConnectionOptions } from "typeorm/driver/sqlite/SqliteConnectionOptions";
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-const config: SqliteConnectionOptions = {
-  type: 'sqlite',
-  database: 'db',
-  // Anything inside the directory -> src -> that ends in .entity.js
-  entities: ['dist/src/**/*.entity.js'],
-  synchronize: true,
-//   migrations: ['dist/src/db/migrations/*.js'],
-//   cli: {
-//     migrationsDir: 'src/db/migrations',
-//   },
-};
 
+  const config: PostgresConnectionOptions = {
+    type: 'postgres',
+    // host: 'db',
+    // port: 5432,
+    // username: 'user',
+    // password: 'password',
+    // database: 'demo',
+    // "postgres://username:password@localhost/database";
+    // url: `postgres://user:password@postgres:5432/db`,
+    entities: ['dist/**/*.entity{.ts,.js}'],
+    synchronize: true,
+  };
 
 export default config;

@@ -1,4 +1,4 @@
-# Welcome to Purp Todos Frontend Repo
+# Welcome to Purp Todos Backend Repo
 
 Just a simple purple todo app.
 
@@ -6,9 +6,7 @@ Just a simple purple todo app.
 
 The app is built with, in the frontend, create-react-app (CRA), react-redux (Redux), react-query, some tailwind (as for the project jsx is more convenient as it is used both in React and React Native), in the backend, with NestJS, Passport, NodeMailer. 
 
-Why CRA over Next.js?
-
-Do not get me wrong, I love Next.js. However, **CRA** was choosen over Next.js as I was easier to implement mobile-like navigation (i.e., stacks and separated navigators). Let me illustrate, **Next.js** by default uses a file-system based router, which would mean significant boiler-plate to implement things as **private routes**. In contrast with CRA I could leverage React Router and build **two distinct BrowserRouters (Routers)**, one for the LoggedIn users and another for LoggedOut users.
+To use, add the secret to a .env file and connect to the database in the `app.module`.
 
 ## Learn More
 

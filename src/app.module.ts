@@ -12,7 +12,7 @@ import config from 'dbConfig';
 
 @Module({
   imports: [UserModule, AuthModule, TypeOrmModule.forRoot({
-    ...config, url: process.env.DATABASE_URL,
+    ...config,
   retryDelay: 5000, autoLoadEntities: true}), TodoModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController, TodoController],
   providers: [AppService],

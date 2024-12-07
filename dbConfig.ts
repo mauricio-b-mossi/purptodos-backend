@@ -8,11 +8,11 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
     },
     // host: 'db',
     // port: 5432,
-    // username: 'user',
-    // password: 'password',
-    // database: 'demo',
     // "postgres://username:password@localhost/database";
-    // url: `postgres://user:password@postgres:5432/db`,
+    username: process.env.POSTGRES_USER || 'user',
+    password: process.env.POSTGRES_PASSWORD || 'password',
+    database: process.env.POSTGRES_DB || 'demo',
+    url: process.env.DATABASE_URL || `postgres://user:password@postgres:5432/db`,
     entities: ['dist/**/*.entity{.ts,.js}'],
     synchronize: true,
   };
